@@ -16,7 +16,7 @@ void push(int x)
  }
   else 
   {
-   (s.a[s.top++])=x;
+   (s.a[++s.top])=x;
   }
 }
    
@@ -34,7 +34,7 @@ int pop()
 }
 
 void main()
-{s.top=-1;
+{  s.top=-1;
   
   char c[size];int e;
   printf("enter postfix expression");
@@ -48,7 +48,7 @@ int evalpostfix(char c[])
 { 
    int ans,i=0,op1,op2;
    char ch;
-   while((ch=c[i])!='\0')
+   while((ch=c[i++])!='\0')
     {
        if((ch>='0')&&(ch<='9'))
         push(ch-'0');
@@ -58,9 +58,9 @@ int evalpostfix(char c[])
          op1=pop();
          ans=eval(op1,op2,ch);
          push(ans);
-       }i++;
+       }
     }
-    return ans;
+    return (pop());
 }
   
  int eval(int a,int b,char c)
